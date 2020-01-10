@@ -23,16 +23,43 @@
 
 		//获取所有人的信息
 		btn1.onclick = ()=>{
-			//使用axios发送get请求，且不携带参数
-		 axios({
-				url:'http://localhost:3000/get_persons',
-				method:'get'
-			}).then(
+			//使用axios发送get请求，不携带参数
+			//完整的写法
+			axios({
+					url:'http://localhost:3000/get_persons',
+					method:'get'
+				}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+				)
+			
+			//精简的写法
+			/* axios.get('http://localhost:3000/get_persons').then(
 				response => console.log('请求成功了，数据为：',response.data),
 				error => console.log('请求失败了，原因为：',error)
-			)
-		}
+			) */
+			}
 
+		btn2.onclick = ()=>{
+			//使用axios发送get请求，携带query参数
+			//完整写法
+			/* axios({
+					url:'http://localhost:3000/get_person_byid',
+					method:'get',
+					params:{ //特别注意，此处携带的是query参数！！！！！
+						id:1
+					}
+				}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+				) */
+				//简写方式
+				axios.get('http://localhost:3000/get_person_byid',{params:{id:1}}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+				)
+		}
+		
 	</script>
 	
 </body>
