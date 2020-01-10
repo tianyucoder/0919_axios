@@ -8,10 +8,10 @@
 </head>
 <body>
 	<script type="text/javascript" src="./axios.min.js"></script>
-	<button id="btn1">获取所有人信息</button>
-	<button id="btn2">根据id获取一个人信息</button>
-	<button id="btn3">添加一个人</button>
-	<button id="btn4">修改一个人</button>
+	<button id="btn1">获取所有人信息</button><br><br>
+	<button id="btn2">根据id获取一个人信息</button><br><br>
+	<button id="btn3">添加一个人</button><br><br>
+	<button id="btn4">修改一个人</button><br><br>
 	<button id="btn5">删除一个人</button>
 
 	<script type="text/javascript" >
@@ -25,7 +25,7 @@
 		btn1.onclick = ()=>{
 			//使用axios发送get请求，不携带参数
 			//完整的写法
-			axios({
+				axios({
 					url:'http://localhost:3000/get_persons',
 					method:'get'
 				}).then(
@@ -40,26 +40,86 @@
 			) */
 			}
 
+		//根据id获取一个人的信息
 		btn2.onclick = ()=>{
 			//使用axios发送get请求，携带query参数
 			//完整写法
-			/* axios({
+				axios({
 					url:'http://localhost:3000/get_person_byid',
 					method:'get',
 					params:{ //特别注意，此处携带的是query参数！！！！！
 						id:1
 					}
 				}).then(
+					response => console.log('请求成功了，数据为：',response),
+					error => console.log('请求失败了，原因为：',error)
+				)
+				//简写方式
+				/* axios.get('http://localhost:3000/get_person_byid',{params:{id:1}}).then(
 					response => console.log('请求成功了，数据为：',response.data),
 					error => console.log('请求失败了，原因为：',error)
 				) */
-				//简写方式
-				axios.get('http://localhost:3000/get_person_byid',{params:{id:1}}).then(
-					response => console.log('请求成功了，数据为：',response.data),
-					error => console.log('请求失败了，原因为：',error)
-				)
 		}
 		
+		//添加一个人
+		btn3.onclick = ()=>{
+			//使用axios发送post请求，携带参数
+			//axios发送post请求。默认将放在请求体里的参数用json形式进行编码
+			//完整写法
+			axios({
+				url:'http://localhost:3000/add_person',
+				method:'post',
+				//如果使用url-encoded编码形式，需要按照如下写法
+				/* headers: { 'content-type': 'application/x-www-form-urlencoded' },
+				data:'name=qiaozhi&age=80' */
+				data:{
+					name:'peiqi',
+					age:19
+				}
+			}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+			)
+
+			//简写方式，注意：携带参数的时候，直接写参数对象
+			/* axios.post('http://localhost:3000/add_person',{name:'qiaozhi2',age:100}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+			) */
+		}
+
+		//根据id修改一个人
+		btn4.onclick = ()=>{
+			//完整
+			axios({
+				url:'http://localhost:3000/person',
+				method:'put',
+				data:{
+					id:3,
+					name:'peiqi',
+					age:90
+				}
+			}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+			)
+			//简写
+			/* axios.put('http://localhost:3000/person',{id:3,name:'demo',age:1}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+			) */
+		}
+		
+		//根据id删除一个人
+		btn5.onclick = ()=>{
+			axios({
+				url:'http://localhost:3000/person/1',
+				method:'delete',
+			}).then(
+					response => console.log('请求成功了，数据为：',response.data),
+					error => console.log('请求失败了，原因为：',error)
+			)
+		}
 	</script>
 	
 </body>

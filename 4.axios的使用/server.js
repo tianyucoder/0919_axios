@@ -2,6 +2,7 @@ const express = require('express')
 
 const app = express()
 app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 app.use(express.static(__dirname+'/public'))
 
 //初始化一个用于保存人的数组
@@ -66,6 +67,7 @@ app.delete('/person/:id',(req,res)=>{
 app.listen(3000,(err)=>{
 	if(!err) {
 		console.log('测试axios-API页面地址为：http://localhost:3000/axios.html');
+		console.log('测试自己封装的axios页面地址为：http://localhost:3000/promise_xhr.html');
 	}
 	else console.log(err);
 })
