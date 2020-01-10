@@ -5,6 +5,34 @@
 	<title>Document</title>
 </head>
 <body>
+	<button id="btn">点我获取所有人</button>
+	<script type="text/javascript" >
+		let btn = document.getElementById('btn')
+		btn.onclick = ()=>{
+			let xhr = new XMLHttpRequest()
+			xhr.responseType = 'json' //指定响应数据的格式，若为json形式，会自动解析
+			//xhr.timeout = 2000
+			/* xhr.ontimeout = ()=>{
+				console.log('不好意思，响应超过2秒没有得到回复');
+			} */
+			/* xhr.onerror = (err)=>{
+				console.log('请求出错了',err);
+			} */
+			/* xhr.onreadystatechange = ()=>{
+				if(xhr.readyState === 4 && xhr.status === 200){
+					console.log(xhr.response);
+					console.log(xhr.getResponseHeader('Date'));
+					console.log(xhr.getAllResponseHeaders());
+					//console.log(xhr);
+				}
+			} */
+			xhr.onload = ()=>{
+				console.log(xhr.response);
+			}
+			xhr.open('get','http://localhost:3000/get_persons')
+			xhr.send()
+		}
+	</script>
 	
 </body>
 </html>

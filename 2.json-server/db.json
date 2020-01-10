@@ -1,0 +1,29 @@
+{
+  "perons": [
+    {
+      "name": "lisi",
+      "age": 100,
+      "id": 2
+    },
+    {
+      "name": "zhangsan",
+      "age": "60",
+      "id": 3
+    },
+    {
+      "name": "xiaole",
+      "age": 18,
+      "id": 4
+    }
+  ],
+  "dogs": [
+    {
+      "id": 1,
+      "name": "wc",
+      "type": "哈士奇"
+    }
+  ],
+  "school": {
+    "name": "atguigu"
+  }
+}

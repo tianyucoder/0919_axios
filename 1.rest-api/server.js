@@ -25,7 +25,7 @@ app.get('/get_person_byid/:id',(req,res)=>{
 })
 
 //添加一个人----参数：name，age-----参数类型：请求体参数
-app.post('/add_person',(req,res)=>{
+app.post('/person',(req,res)=>{
 	const {name,age} = req.body
 	console.log(name,age);
 	personArr.push({id:personArr.length+1,name,age})
@@ -33,7 +33,7 @@ app.post('/add_person',(req,res)=>{
 })
 
 //更新一个人的信息----参数：id,name,age-----参数类型：请求体参数
-app.post('/update_person',(req,res)=>{
+app.put('/person',(req,res)=>{
 	const {id,name,age} = req.body
 	let person = personArr.find((item)=>{return item.id === id*1})
 	if(person){
@@ -46,7 +46,7 @@ app.post('/update_person',(req,res)=>{
 })
 
 //删除一个人---参数：id----参数类型：请求体参数
-app.post('/delete_person',(req,res)=>{
+app.delete('/person',(req,res)=>{
 	const {id} = req.body
 	nPersonArr = personArr.filter((item)=>{
 		return item.id !== id*1
