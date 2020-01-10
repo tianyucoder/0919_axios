@@ -13,6 +13,7 @@ let personArr = [
 
 //获取所有人信息-----无需参数
 app.get('/get_persons',(req,res)=>{
+	res.set('Access-Control-Allow-Origin', '*');
 	res.send({status:1,data:personArr})
 })
 
