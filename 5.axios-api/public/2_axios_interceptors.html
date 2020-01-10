@@ -8,8 +8,6 @@
 	<script type="text/javascript" src="./js/axios.min.js"></script>
 
 	<button id="btn1">点我</button><br><br>
-	<button id="btn2">点我</button><br><br>
-	<button id="btn3">点我</button><br><br>
 
 	 <!-- 
 			axios请求拦截器
@@ -36,26 +34,26 @@
 			console.log('请求拦截器1执行了',config);
 			return config
 		})
-		axios.interceptors.request.use((config)=>{
+		/* axios.interceptors.request.use((config)=>{
 			console.log('请求拦截器2执行了');
 			return config
-		})
+		}) */
 
 		//添加一个响应拦截器
 		axios.interceptors.response.use(
 			(response)=>{
-				console.log('第一个响应拦截器被调用了');
+				console.log('响应拦截器1被调用了');
 				return response.data
-			},//响应成功的回调
+			},
 			(error)=>{return Promise.reject(error)}//响应失败的回调
 		)
-		axios.interceptors.response.use(
+		/* axios.interceptors.response.use(
 			(response)=>{
-				console.log('第二个响应拦截器被调用了');
+				console.log('响应拦截器2被调用了');
 				return response.data
-			},//响应成功的回调
+			},
 			(error)=>{return Promise.reject(error)}//响应失败的回调
-		)
+		) */
 
 		btn1.onclick = ()=>{
 			axios({
