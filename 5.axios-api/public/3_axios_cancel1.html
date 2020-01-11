@@ -5,12 +5,44 @@
 	<title>Document</title>
 </head>
 <body>
-	<script type="text/javascript" src="./js/axios.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
 
 	<button onclick="fun1()">点我获取数据1</button><br><br>
 	<button onclick="demo()">取消请求</button><br><br>
 
 	<script type="text/javascript">
+
+		const {CancelToken} = axios;
+		let cancel;
+
+		//发送请求
+		function fun1(){
+			axios({
+				url:'http://localhost:3000/get_data1',
+				cancelToken: new CancelToken((c)=> {
+					//这里的c会接到一个函数，调用该函数就能取消本次请求
+					cancel = c;
+				})
+			}).then(
+				response => {
+					cancel = null
+					console.log('请求成功了',response)//请求成功的回调
+				},
+				error => {
+					if(axios.isCancel(error)){
+						console.log('用户取消了请求',error)
+					}else{
+						console.log('请求失败了',error)
+					}
+				}
+			)
+			
+		}	
+		//取消请求
+		function demo(){
+			if(cancel) cancel('任性，就不要了');
+		}
+		
 		
 	</script>
 

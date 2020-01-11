@@ -55,10 +55,12 @@
 					error => console.log('请求失败了，原因为：',error)
 				)
 				//简写方式
-				/* axios.get('http://localhost:3000/get_person_byid',{params:{id:1}}).then(
+				axios.get('http://localhost:3000/get_person_byid',{
+					params:{id:1},
+				}).then(
 					response => console.log('请求成功了，数据为：',response.data),
 					error => console.log('请求失败了，原因为：',error)
-				) */
+				)
 		}
 		
 		//添加一个人
@@ -79,7 +81,7 @@
 			}).then(
 					response => console.log('请求成功了，数据为：',response.data),
 					error => console.log('请求失败了，原因为：',error)
-			)
+				)
 
 			//简写方式，注意：携带参数的时候，直接写参数对象
 			/* axios.post('http://localhost:3000/add_person',{name:'qiaozhi2',age:100}).then(
